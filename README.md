@@ -32,27 +32,6 @@ You can change the directory to install servers by set `g:lsp_settings_servers_d
 
 ## Usage
 
-If you install rls already, you can use rls without configurations. But if you not installed rls yet, you can install it by following [this instruction](https://github.com/rust-lang/rls#setup).
-
-If you install clangd already, you can use clangd for C/C++ without configurations. But if you install clang with named clangd-6.0, you can replace executable like below:
-
-```vim
-let g:lsp_settings = {
-\  'clangd': {'cmd': ['clangd-6.0']}
-\}
-```
-
-Overridable keys are:
-
-* cmd (List ex: `['clangd-6.0', '-enable-snippets']`)
-* initialization_options (Dictionary)
-* whitelist (List)
-* blacklist (List)
-* config (Dictionary)
-* workspace_config (Dictionary)
-
-If you install ruby but not solargraph, you can install solargraph with following command.
-
 ```
 :LspInstallServer
 ```
@@ -97,6 +76,75 @@ Currently, no way to uninstall/update server. Run this command again, newer vers
 | Groovy     | groovy-language-server                                 | Yes           |
 | Dart       | analysis-server-dart-snapshot                          | Yes           |
 | Erlang     | erlang-ls                                              | Yes           |
+| F#         | fsharp-language-server                                 | Yes           |
+| GraphQL    | gql-language-server                                    | Yes           |
+
+## Notes
+
+### clangd (C/C++)
+
+There is a Linux OS/version that does not run locally installed clangd due to zlib version mismatch. If you want to use clangd, please install clangd on your system.
+
+### rls (Rust)
+
+If you install rls already, you can use rls without configurations. But if you not installed rls yet, you can install it by following [this instruction](https://github.com/rust-lang/rls#setup).
+
+### gql-language-server (GraphQL)
+
+To use gql-language-server, `.gqlconfig` have to be located on the top of project directory. And schema must be pointed to the schema file correctly.
+
+```json5
+{
+  schema: {
+    files: 'path/to/schema.graphql'
+  }
+}
+```
+
+Finally, you have to install `@playlyfe/gql` into your project.
+
+```
+$ npm install @playlyfe/gql --save-dev
+```
+
+## Configurations
+
+Most of configurations are not required.
+
+If you install clangd already, you can use clangd for C/C++ without configurations. But if you install clang with named clangd-6.0, you can replace executable like below:
+
+```vim
+let g:lsp_settings = {
+\  'clangd': {'cmd': ['clangd-6.0']}
+\}
+```
+
+Overridable keys are:
+
+* cmd (List ex: `['clangd-6.0', '-enable-snippets']`)
+* initialization_options (Dictionary)
+* whitelist (List)
+* blacklist (List)
+* config (Dictionary)
+* workspace_config (Dictionary)
+
+If you install ruby but not solargraph, you can install solargraph with following command.
+
+If you have some Language Servers and want to use specified the server:
+
+```vim
+let g:lsp_settings_perl = 'slp'
+```
+
+If you want to disable Language Server:
+
+```vim
+let g:lsp_settings = {
+\  'perl-languageserver': {
+\    'disabled': 0,
+\   }
+\}
+```
 
 ## License
 
