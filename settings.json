@@ -546,6 +546,33 @@
       ]
     }
   ],
+  "hy": [
+    {
+      "command": "hyuga",
+      "url": "https://github.com/sakuraiyuta/hyuga",
+      "description": "Yet Another Hy Language Server",
+      "requires": [],
+      "root_uri_patterns": [
+        ".git/",
+        "setup.py"
+      ]
+    },
+    {
+      "command": "clj-kondo-lsp",
+      "url": "https://github.com/clj-kondo/clj-kondo.lsp",
+      "description": "Clj-kondo language server",
+      "requires": [
+        "java"
+      ],
+      "root_uri_patterns": [
+        ".lein/",
+        ".shadow-cljs/",
+        "project.clj",
+        "deps.edn",
+        "shadow-cljs.edn"
+      ]
+    }
+  ],
   "java": [
     {
       "command": "eclipse-jdt-ls",
